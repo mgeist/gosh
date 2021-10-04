@@ -96,7 +96,6 @@ func reloadCommand(cmdString string) (*os.Process, error) {
 
 func stopProcess(process *os.Process) error {
 	if *process == (os.Process{}) {
-		fmt.Println("Empty process, nothing to kill.")
 		return nil
 	}
 	err := process.Signal(syscall.SIGTERM)
@@ -113,7 +112,7 @@ func reload(absDir, glob, ignore, cmd string, pollRate time.Duration) {
 		var err error
 		isReloading, err = shouldReload(absDir, glob, ignore, lastCheck)
 		if err != nil {
-			log.Fatal("Error scanning files: ", err)
+			log.Fatal("scanning files : ", err)
 		}
 		lastCheck = time.Now()
 
